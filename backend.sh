@@ -33,13 +33,12 @@ VALIDATE $? "Enabling NodeJS"
 dnf install nodejs -y &>>$LOG_FILE_NAME
 VALIDATE $? "Installing NodeJS"
 
-USERNAME = $(id expense)
-echo 
+id expense &>>$LOG_FILE_NAME
 if [ $? -ne 0 ]
 then
-  echo "User is already Created --> SKIPPING"
-  echo "user name is $USERNAME"
-else
   useradd expense &>>$LOG_FILE_NAME
   VALIDATE $? "Adding a User"
+else
+  echo "User is already Created --> SKIPPING"
+  echo "user name is $USERNAME"
 fi
