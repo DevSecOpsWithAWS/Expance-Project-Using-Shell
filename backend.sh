@@ -3,7 +3,7 @@
 LOG_FOLDER_NAME="/var/log/expance-logs"
 LOG_FILE=$(echo $0 | cut -d '.' -f1)
 TIMESTAMP=$(date +%Y-%m-%d:%H:%M:%S)
-LOG_FILE_NAME="$LOG_FOLDER_NAME/$LOG_FILE/$TIMESTAMP"
+LOG_FILE_NAME="$LOG_FOLDER_NAME/$LOG_FILE-$TIMESTAMP"
 USERID=$(id -u)
 mkdir $LOG_FOLDER_NAME
 echo "Scripting is executing at --> : $TIMESTAMP" &>>$LOG_FILE_NAME
