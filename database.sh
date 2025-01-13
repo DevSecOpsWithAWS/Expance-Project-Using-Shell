@@ -32,5 +32,13 @@ VALIDATE $? "Enabling MySQL Server"
 systemctl start mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "Starting MySQL Server"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE_NAME
-VALIDATE $? "Creating Password Set Up"
+mysql -h database.sridevsecops.store -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE_NAME
+
+if [ $? -ne 0 ]
+then
+  echo "MySQL Root password not setup" &>>$LOG_FILE_NAME
+  mysql_secure_installation --set-root-pass ExpenseApp@1
+  VALIDATE $? "Setting Root Password"
+else
+  echo "MySQL Root Password already setup --> SKIPPING"
+fi
