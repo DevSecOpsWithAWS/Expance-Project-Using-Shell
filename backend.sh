@@ -40,5 +40,4 @@ then
   VALIDATE $? "Adding a User"
 else
   echo "User is already Created --> SKIPPING"
-  echo "user name is $USERNAME"
 fi
