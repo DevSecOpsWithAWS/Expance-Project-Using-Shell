@@ -14,6 +14,10 @@ then
 fi
 
 
-
-
-#dnf install mysql-server -y
+dnf install mysql-server -y &>> $LOG_FILE_NAME
+if [ $? -ne 0 ]
+then
+  echo "MySQL Installation is SUCCESS"
+else
+  echo "MySQL Installation is FAILURE"
+fi
