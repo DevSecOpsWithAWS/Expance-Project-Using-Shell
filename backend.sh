@@ -43,7 +43,8 @@ else
 fi
 
 rm -rf /app/* &>>$LOG_FILE_NAME
-
+VALIDATE $? "app directory is Removed"
+ 
 mkdir /app &>>$LOG_FILE_NAME
 VALIDATE $? "app directory is created" 
 
