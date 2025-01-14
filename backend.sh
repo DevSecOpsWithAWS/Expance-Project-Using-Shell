@@ -64,8 +64,9 @@ npm install &>>$LOG_FILE_NAME
 VALIDATE $? "Installing npm"
 
 #vim /etc/systemd/system/backend.service
-cp /home/ec2-user/Expanse-project/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
-VALIDATE $? "Coping backend.service file is -->"
+#C:\Users\choud\DevSecOps\Expance-Project-Using-Shell
+cp /home/ec2-user/Expance-Project-Using-Shell/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
+VALIDATE $? "Coping backend.service file is"
 
 dnf install mysql -y &>>$LOG_FILE_NAME
 VALIDATE $? "MySQL Installing"
