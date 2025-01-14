@@ -65,6 +65,8 @@ VALIDATE $? "Installing npm"
 
 #vim /etc/systemd/system/backend.service
 #C:\Users\choud\DevSecOps\Expance-Project-Using-Shell
+/home/ec2-user/Expance-Project-Using-Shell
+
 cp /home/ec2-user/Expance-Project-Using-Shell/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
 VALIDATE $? "Coping backend.service file is"
 
