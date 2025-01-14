@@ -42,14 +42,16 @@ else
   echo "User is already Created --> SKIPPING"
 fi
 
-mkdir /app
-VALIDATE $? "app directory is created"
+mkdir /app &>>$LOG_FILE_NAME
+VALIDATE $? "app directory is created" 
 
-curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Downloaded the backend project file"
 
 cd /app
 VALIDATE $? "User is moved to app directory"
+
+rm -rf /app/*
 
 unzip /tmp/backend.zip
 VALIDATE $? "Unziped the backend code"
