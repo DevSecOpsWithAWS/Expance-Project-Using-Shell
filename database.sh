@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG_FOLDER_NAME="/var/log/expance-logs"
+LOG_FOLDER_NAME="/var/log/expense-logs"
 LOG_FILE=$(echo $0 | cut -d '.' -f1)
 TIMESTAMP=$(date +%Y-%m-%d:%H:%M:%S)
 LOG_FILE_NAME="$LOG_FOLDER_NAME/$LOG_FILE-$TIMESTAMP"
