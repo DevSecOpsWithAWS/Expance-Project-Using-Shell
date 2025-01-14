@@ -42,6 +42,8 @@ else
   echo "User is already Created --> SKIPPING"
 fi
 
+rm -rf /app/* &>>$LOG_FILE_NAME
+
 mkdir /app &>>$LOG_FILE_NAME
 VALIDATE $? "app directory is created" 
 
@@ -51,7 +53,7 @@ VALIDATE $? "Downloaded the backend project file"
 cd /app &>>$LOG_FILE_NAME
 VALIDATE $? "User is moved to app directory"
 
-rm -rf /app/* &>>$LOG_FILE_NAME
+
 
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Unziped the backend code"
