@@ -48,10 +48,35 @@ VALIDATE $? "app directory is created"
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Downloaded the backend project file"
 
-cd /app
+cd /app &>>$LOG_FILE_NAME
 VALIDATE $? "User is moved to app directory"
 
-rm -rf /app/*
+rm -rf /app/* &>>$LOG_FILE_NAME
 
-unzip /tmp/backend.zip
+unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Unziped the backend code"
+
+npm install &>>$LOG_FILE_NAME
+VALIDATE $? "Installing npm"
+
+#vim /etc/systemd/system/backend.service
+cp /home/ec2-user/Expanse-project/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
+VALIDATE $? "Coping backend.service file is -->"
+
+dnf install mysql -y &>>$LOG_FILE_NAME
+VALIDATE $? "MySQL Installing"
+
+mysql -h database.sridevsecops.store -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
+VALIDATE $? "Loading Schema"
+
+systemctl daemon-reload &>>$LOG_FILE_NAME
+VALIDATE $? "daemon-reloading"
+
+systemctl start backend &>>$LOG_FILE_NAME
+VALIDATE $? "backend starting"
+
+systemctl enable backend &>>$LOG_FILE_NAME
+VALIDATE $? "backend enabling"
+
+systemctl restart backend &>>$LOG_FILE_NAME
+VALIDATE $? "Restarting backend"
